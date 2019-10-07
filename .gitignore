@@ -8,8 +8,7 @@ npm-debug.log
 .idea
 sessions/
 public/
-certs/
-config/default.json
+
 # exclude everything
 media/*
 

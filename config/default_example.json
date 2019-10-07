@@ -2,6 +2,6 @@
   "appId": "1790941534518338",
   "appSecret": "8142294afd025788645001c62f87c990",
   "sessionSecret": "258c04a7213be052e19c5d08fbc956d5",
-  "callbackURL" : "https://post-to-social-media.heroku.com/auth/facebook/callback",
+  "callbackURL": "https://post-to-social-media.herokuapp.com/auth/facebook/callback",
   "scheduler_timezone" : "Africa/South Africa"
 }

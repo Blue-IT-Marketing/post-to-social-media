@@ -1,30 +1,55 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const fs = require("fs"),
+  https = require("https"),
+  express = require("express"),
+  Session = require("express-session"),
+  FileStore = require("session-file-store")(Session),
+  fileUpload = require("express-fileupload"),
+  bodyParse = require("body-parser"),
+  config = require("config"),
+  middleware = require("connect-ensure-login"),
+  scheduler = require("./cron/scheduler"),
+  passport = require("./auth/passport"),
+  options = {
+    key: fs.readFileSync(__dirname + "/certs/selfsigned.key"),
+    cert: fs.readFileSync(__dirname + "/certs/selfsigned.crt")
+  },
+  port = 8888;
 
-const PORT = process.env.PORT || 5001;
-
-// create express app
 const app = express();
+mongoose.connect("mongodb://127.0.0.1/nodeScheduler");
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+app.use("/src", express.static(__dirname + "/public"));
+app.use("/media", express.static(__dirname + "/media"));
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(fileUpload());
 
-// adding cors
-app.use(cors());
+app.use(require("morgan")("combined"));
+app.use(require("cookie-parser")());
+app.use(bodyParse.urlencoded({ extended: true }));
+app.use(bodyParse.json());
+app.use(
+  Session({
+    store: new FileStore(),
+    secret: config.get("sessionSecret"),
+    resave: true,
+    saveUninitialized: true
+  })
+);
 
-// define a simple route
-app.get('/', (req, res) => {    
-    res.send('this is an article api good luck')
+app.get("/", function(req, res) {
+  res.render("app", { user: req.user });
 });
 
 
-// listening for requests
-app.listen(PORT).on('listening', () => {
-    console.log(`Social Media API Running on Port  ${PORT} `);    
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/login", require("./routes/login"));
+
+
+
+https.createServer(options, app).listen(port, function() {
+  console.log("Express server listening on port " + port);
 });
-
-

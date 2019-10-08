@@ -3,5 +3,6 @@
   "appSecret": "8142294afd025788645001c62f87c990",
   "sessionSecret": "258c04a7213be052e19c5d08fbc956d5",
   "callbackURL": "https://post-to-social-media.herokuapp.com/auth/facebook/callback",
-  "scheduler_timezone" : "Africa/Johannesburg"
+  "scheduler_timezone" : "Africa/Johannesburg",
+  "mongoDB" : "mongodb://mobius-crypt:mobius5627084@ds331548.mlab.com:31548/heroku_316ch0n6"
 }

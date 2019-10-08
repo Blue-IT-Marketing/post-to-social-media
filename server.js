@@ -23,9 +23,7 @@ FB.options({
 });
 
 const app = express();
-mongoose.connect(
-  "mongodb://mobius-crypt:mobius5627084@ds331548.mlab.com:31548/heroku_316ch0n6"
-);
+mongoose.connect(process.env.mongoDB || config.get("mongoDB"));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');

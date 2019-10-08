@@ -3,11 +3,13 @@
 
 # Node.js
 node_modules/
+config/default.json
 npm-debug.log
 
 .idea
 sessions/
 public/
+
 
 # exclude everything
 media/*

@@ -3,9 +3,11 @@ const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
 const User = require('../database/Schema').User;
 passport.use(new Strategy({
-        clientID: config.get('appId'),
-        clientSecret: config.get('appSecret'),
-        callbackURL: config.get('callbackURL'),
+        
+        clientID: process.env.appId || config.get('appId'),
+        clientSecret:process.env.appSecret || config.get('appSecret'),
+        callbackURL: process.env.callbackURL || config.get('callbackURL'),
+
         profileFields: ['id', 'displayName', 'link', 'email']
     },
     (accessToken, refreshToken, profile, cb) => {

@@ -23,7 +23,9 @@ FB.options({
 });
 
 const app = express();
-mongoose.connect('mongodb://127.0.0.1/nodeFB');
+mongoose.connect(
+  "mongodb://heroku_316ch0n6:heroku_316ch0n6.heroku_316ch0n6@ds331548.mlab.com:31548/heroku_316ch0n6"
+);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');

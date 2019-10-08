@@ -1,21 +1,21 @@
-const fs = require('fs'),
-    https = require('https'),
-    express = require('express'),
-    Session = require('express-session'),
-    FileStore = require('session-file-store')(Session),
-    fileUpload = require('express-fileupload'),
-    bodyParse = require('body-parser'),
-    passport = require('./auth/passport'),
-    mongoose = require('mongoose'),
-    FB = require('fb'),
-    config = require('config'),
-    middleware = require('connect-ensure-login'),
-    scheduler = require('./cron/scheduler'),
-    options = {
-        key: fs.readFileSync(__dirname + '/certs/selfsigned.key'),
-        cert: fs.readFileSync(__dirname + '/certs/selfsigned.crt'),
-    },
-    port = 5000;
+const fs = require("fs"),
+  https = require("https"),
+  express = require("express"),
+  Session = require("express-session"),
+  FileStore = require("session-file-store")(Session),
+  fileUpload = require("express-fileupload"),
+  bodyParse = require("body-parser"),
+  passport = require("./auth/passport"),
+  mongoose = require("mongoose"),
+  FB = require("fb"),
+  config = require("config"),
+  middleware = require("connect-ensure-login"),
+  scheduler = require("./cron/scheduler"),
+  options = {
+    key: fs.readFileSync(__dirname + "/certs/selfsigned.key"),
+    cert: fs.readFileSync(__dirname + "/certs/selfsigned.crt")
+  },
+  port = process.env.PORT || 5000;
 
 FB.options({
     appId: config.get('appId'),

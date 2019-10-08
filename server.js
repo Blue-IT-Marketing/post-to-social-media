@@ -18,8 +18,8 @@ const fs = require("fs"),
   port = process.env.PORT || 5000;
 
 FB.options({
-    appId: config.get('appId'),
-    appSecret: config.get('appSecret')
+    appId: process.env.appId || config.get('appId'),
+    appSecret: process.env.appSecret || config.get('appSecret')
 });
 
 const app = express();

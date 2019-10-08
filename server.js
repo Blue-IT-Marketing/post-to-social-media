@@ -24,7 +24,7 @@ FB.options({
 
 const app = express();
 mongoose.connect(
-  "mongodb://<heroku_316ch0n6>:<heroku_316ch0n6.heroku_316ch0n6>@ds331548.mlab.com:31548/heroku_316ch0n6"
+  "mongodb://mobius-crypt:mobius5627084@ds331548.mlab.com:31548/heroku_316ch0n6"
 );
 
 app.set('views', __dirname + '/views');

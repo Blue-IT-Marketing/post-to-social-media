@@ -15,7 +15,7 @@ const fs = require('fs'),
         key: fs.readFileSync(__dirname + '/certs/selfsigned.key'),
         cert: fs.readFileSync(__dirname + '/certs/selfsigned.crt'),
     },
-    port = 8888;
+    port = 5000;
 
 FB.options({
     appId: config.get('appId'),

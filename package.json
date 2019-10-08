@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "Facebook post scheduler build with Node.js",
   "scripts": {
-    "dev-server": "nodemon server.js --config nodemon.json",
+    "dev-server": "node server.js",
     "watch": "webpack --config webpack.config.js",
-    "start" : "nodemon server.js --config nodemon.json"
+    "start" : "node server.js"
 
   },
   "dependencies": {
